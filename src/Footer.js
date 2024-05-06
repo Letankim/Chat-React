@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      Tui là Ân. Tui mắc ỉa quá vì ăn quá cay.
+      Xong rồi. Lát đi về
     </div>
   )
 };
