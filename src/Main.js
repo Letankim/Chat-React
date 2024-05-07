@@ -1,4 +1,9 @@
 import React,{ useEffect,useState } from "react";
+import Todo from "./features/Todo";
+import { Route,Routes } from "react-router-dom";
+import Post from "./features/Post";
+import PostDetail from "./features/PostDetail";
+import NotFound from "./components/NotFound";
 
 const Main = () => {
     const [time,setTime] = useState(0);
@@ -10,6 +15,7 @@ const Main = () => {
             setTime(time + ' Đã tắt đi rồi');
         };
     },[]);
+
     function getTime() {
         let currentTime = new Date();
         const h = currentTime.getHours();
@@ -28,9 +34,16 @@ const Main = () => {
     return (
         <div>
             <button onClick={toggleVisibility}>
-                {isVisible ? 'Hide Component' : 'Show Component'}
+                {isVisible ? 'Ẩn thành phần' : 'Hiện thành phần'}
             </button>
-            {isVisible && <div>{time}</div>}
+            {isVisible && (
+                <Routes>
+                    <Route path="/todo" element={<Todo />} />
+                    <Route path="/post" element={<Post />} />
+                    <Route path="/post/:id" element={<PostDetail/>}/>
+                    <Route path="/404" element={<NotFound/>}/>
+                </Routes>
+            )}
         </div>
     );
 };
